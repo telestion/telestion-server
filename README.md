@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/telestion/telestion-server/logo/Telestion-logo-big.png" alt="telestion" />
+  <img src="https://github.com/telestion/telestion-server/blob/master/logo/Telestion-logo-big.png" alt="telestion" />
 </p>
 <p align="center">
   <a href="https://travis-ci.org/github/telestion/telestion-server" target="_blank">
