@@ -1,0 +1,13 @@
+language: python
+python:
+  - 3.8
+  - 3.7
+os: linux
+env:
+  - CODECOV_TOKEN=9262ff3d-820e-4d0e-aa36-b84b4398922f
+install:
+  - pip install -r requirements.txt
+script:
+  - coverage run -m pytest
+after_script:
+  - codecov
