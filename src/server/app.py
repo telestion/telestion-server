@@ -8,15 +8,5 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
 db = SQLAlchemy(app)
 
-from server.api.v1.dummy import Dummy
-
-"""
-Example URL.
-
-Allowed methods:
-- GET (Returns "hello world")
-"""
-api.add_resource(Dummy, '/dummy')
-
 if __name__ == '__main__':
     app.run(debug=True)
