@@ -17,7 +17,7 @@ Allowed methods:
 - GET (Returns answer with specified id)
 - POST (Posts a new answer)
 """
-api.add_resource(Answer, '/answer', '/answer/<id:int>')
+api.add_resource(Answer, '/answer', '/answer/<int:id>')
 
 if __name__ == '__main__':
     app.run(debug=True)
