@@ -8,5 +8,16 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
 db = SQLAlchemy(app)
 
+from server.api.v1 import Answer
+
+"""
+Answer URL.
+
+Allowed methods:
+- GET (Returns answer with specified id)
+- POST (Posts a new answer)
+"""
+api.add_resource(Answer, '/answer', '/answer/<id:int>')
+
 if __name__ == '__main__':
     app.run(debug=True)
