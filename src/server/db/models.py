@@ -23,6 +23,7 @@ class Question(ModelWithMethods):
     id = db.Column(db.Integer, primary_key=True)
     created_by = db.Column(db.String, index=True, nullable=False)
     text = db.Column(db.String, nullable=False)
+    date = db.Column(db.DateTime, nullable=False)
 
 
 class Answer(ModelWithMethods):
@@ -31,3 +32,4 @@ class Answer(ModelWithMethods):
     question_id = db.Column(db.Integer, db.ForeignKey('question.id'))
     created_by = db.Column(db.String, index=True, nullable=False)
     text = db.Column(db.String, nullable=False)
+    date = db.Column(db.DateTime, nullable=False)
