@@ -1,5 +1,7 @@
 from server import db
 
+DATETIME_FORMAT = '%d.%m.%y'
+
 
 class ModelWithMethods(db.Model):
     __abstract__ = True
@@ -31,7 +33,7 @@ class Question(ModelWithMethods):
     __tablename__ = 'question'
     id = db.Column(db.Integer, primary_key=True)
     # TODO: - Make created_by = Integer ForeignKey('user.id)
-    created_by = db.Column(db.String, index=True, nullable=False)
+    created_by = db.Column(db.Integer, index=True, nullable=False)
     # TODO: - Add addresser = Integer ForeignKey('user.id')
     # addresser = db.Column(db.)
     text = db.Column(db.String, nullable=False)
@@ -45,13 +47,21 @@ class Question(ModelWithMethods):
     def exists(id):
         return Question.get(id) is not None
 
+    def dict(self):
+        return {
+            'id': self.id,
+            'created_by': self.created_by,
+            'text': self.text,
+            'date': self.date.strftime(DATETIME_FORMAT)
+        }
+
 
 class Answer(ModelWithMethods):
     __tablename__ = 'answer'
     id = db.Column(db.Integer, primary_key=True)
     question_id = db.Column(db.Integer, db.ForeignKey('question.id'))
     # TODO: - Make created_by = Integer ForeignKey('user.id)
-    created_by = db.Column(db.String, index=True, nullable=False)
+    created_by = db.Column(db.Integer, index=True, nullable=False)
     text = db.Column(db.String, nullable=False)
     date = db.Column(db.DateTime, nullable=False)
 
@@ -62,3 +72,12 @@ class Answer(ModelWithMethods):
     @staticmethod
     def exists(id):
         return Answer.get(id) is not None
+
+    def dict(self):
+        return {
+            'id': self.id,
+            'question_id': self.question_id,
+            'created_by': self.created_by,
+            'text': self.text,
+            'date': self.date.strftime(DATETIME_FORMAT)
+        }

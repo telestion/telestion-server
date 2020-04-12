@@ -32,21 +32,21 @@ def post_answer(p: AnswerParser) -> dict:
                       text=p.text,
                       date=datetime.now())
     answer.add_and_commit()
-    return dict(answer)
+    return answer.dict()
 
 
 def get_answer(id: int) -> dict:
     answer = AnswerDB.get(id)
     if answer is None:
         raise NotFoundError('answer with specified id doesn\'t exist')
-    return dict(answer)
+    return answer.dict()
 
 
 def delete_answer(id: int) -> dict:
     answer = AnswerDB.get(id)
     if answer is None:
         raise NotFoundError('answer with specified id doesn\'t exist')
-    data = dict(answer)
+    data = answer.dict()
     answer.delete_and_commit()
     data['id'] = 'DELETED'
     return data

@@ -1,5 +1,7 @@
 import pytest
 
+from json import dumps
+
 
 def test_answer_post(client):
     token = None  # TODO: - Test with user
@@ -12,7 +14,7 @@ def test_answer_post(client):
         'question_id': 1,
         'text': 'Лорем ипсум, много текста, вот и ответ.'
     }
-    resp = client.post('/answer', headers=headers, data=data)
+    resp = client.post('/answer', headers=headers, data=dumps(data))
     print(resp.json)
 
     assert resp.status_code == 201
@@ -29,12 +31,12 @@ def test_answer_get_no_exc(client):
     assert resp.json['id'] == 1
 
 
-def test_answer_delete_unsuccessful(client):
-    token = None  # TODO: - Test with user
-    headers = {'Authorization': f'Bearer {token}'}
-    resp = client.delete('/answer/1')
-    print(resp.json)
-    assert resp.status_code == 403
+# def test_answer_delete_unsuccessful(client):
+#     token = None  # TODO: - Test with user
+#     headers = {'Authorization': f'Bearer {token}'}
+#     resp = client.delete('/answer/1')
+#     print(resp.json)
+#     assert resp.status_code == 403
 
 
 def test_answer_delete_successful(client):
