@@ -1,4 +1,4 @@
-from server.app import db
+from server import db
 
 
 class ModelWithMethods(db.Model):
